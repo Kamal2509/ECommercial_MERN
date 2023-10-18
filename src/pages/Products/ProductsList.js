@@ -5,15 +5,17 @@ import { useLocation } from 'react-router-dom';
 export const ProductsList = () => {
   const [show, setshow]=useState(false);
   const [products,setProduct] =useState([]);
-  const seach =useLocation
+  const search =useLocation().search;
+  const searchTerm= new URLSearchParams(search).get("q")
+ 
 useEffect(()=>{
     async function fetchProducts(){
-        const response=await fetch("http://localhost:8000/products?name_like=react");
-        const data = await response.json();
+        const response=await fetch(`http://localhost:8000/products?name_like=${searchTerm ? searchTerm : ""}`);
+         const data = await response.json();
         setProduct(data);
-    }
+            }
     fetchProducts();
-},[])
+},[searchTerm]);
   return (
     <main>
             <section className="my-5">

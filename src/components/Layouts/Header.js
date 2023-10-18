@@ -36,7 +36,7 @@ document.documentElement.classList.add("dark");
               </div>
           </div>
       </nav>
-      {searchSection && <Search/>}
+      {searchSection && <Search setSearchSection={setsearchSection}/>}
       
     </header>
     )

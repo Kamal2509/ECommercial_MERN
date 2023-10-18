@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
 import { Rating } from "../components/Elements/Rating";
+import { useTitle } from "../hooks/useTitle";
 
 export const ProductDetail = () => {
+    
     const [product,setProduct] =useState([]);
+   
     useEffect(()=>{
         async function fetchProducts(){
             const response=await fetch("http://localhost:8000/products/10002");
@@ -11,6 +14,8 @@ export const ProductDetail = () => {
         }
         fetchProducts();
     },[])
+    useTitle(product.name);
+    console.log(product.name);
     return (
       <main>
           <section>
